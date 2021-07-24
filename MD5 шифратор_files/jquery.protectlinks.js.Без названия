@@ -1,0 +1,37 @@
+(function($) {
+	var live = false;
+	var startDate = new Date;
+	var startTime = startDate.getTime();
+	var liveEvents = ['mousemove', 'scroll', 'keydown'];
+	
+	var unbindEvents = function () {
+		for (key in liveEvents) {
+			$(window).unbind(liveEvents[key], liveEvent);		
+		}
+	}
+
+	var liveEvent = function (event) {
+		live = true;
+		unbindEvents();
+	};
+	
+	var clickEvent = function (event) {
+		var endDate = new Date;
+		var elapsedTime = endDate.getTime() - startTime;
+		var $this = $(this);
+		if (live) {
+			var href = $this.attr('href');
+			$.cookie('protectlinks', elapsedTime);
+		}
+	};
+	
+	for (key in liveEvents) {
+		$(window).bind(liveEvents[key], liveEvent);		
+	}
+	
+	$.fn.protectLinks = function() {
+		return this.each(function(){
+			$(this).bind('click.protectLinks', clickEvent);
+		});
+	};
+})(jQuery);
