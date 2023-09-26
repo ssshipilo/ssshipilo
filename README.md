@@ -1,4 +1,4 @@
-###👋 Welcome to my profile!
+## 👋 Welcome to my profile!
 
 🖥 I'm a passionate Middle Full Stack developer and the proud owner of [SAV Web Studio](https://savweb.studio/ "SAV Web Studio").
 
